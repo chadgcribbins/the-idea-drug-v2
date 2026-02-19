@@ -1,0 +1,67 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactForm from "../components/ContactForm.astro";
+import { getEntry } from "astro:content";
+
+const page = await getEntry("pages", "contact");
+const d = page.data as Record<string, any>;
+
+const subject = Astro.url.searchParams.get("subject") || "";
+const prefillMap: Record<string, string> = {
+  speaking: "I'd like to enquire about booking Mark to speak at an event.",
+  "system-two": "I'd like to enquire about working with System Two.",
+};
+const prefill = prefillMap[subject] || "";
+---
+
+<Layout title={d.title} description={d.description}>
+  <section class="section section--lg">
+    <div class="container container--narrow contact-page">
+      <h1>{d.title}</h1>
+      <p class="contact-linkedin">
+        You can find me on LinkedIN <a href={d.linkedInUrl}>here</a>
+      </p>
+      <p class="contact-intro">{d.formIntro}</p>
+
+      <div class="contact-form-wrapper">
+        <ContactForm prefill={prefill} />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-page {
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: var(--sys-medium, 1.5rem);
+  }
+
+  .contact-linkedin {
+    margin-bottom: var(--sys-small, 1rem);
+    font-size: var(--sys-sizes-large, 20px);
+  }
+
+  .contact-linkedin a {
+    color: var(--sys-color-on-surface, #000);
+    text-decoration: underline;
+    transition: color var(--sys-motion-duration, 200ms) ease;
+  }
+
+  .contact-linkedin a:hover {
+    color: var(--sys-color-primary, #D42020);
+  }
+
+  .contact-intro {
+    color: var(--sys-color-on-surface, #000);
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .contact-form-wrapper {
+    display: flex;
+    justify-content: center;
+    text-align: left;
+  }
+</style>

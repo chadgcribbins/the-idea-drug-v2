@@ -1,0 +1,312 @@
+---
+import Layout from "../layouts/Layout.astro";
+import EmailCapture from "../components/EmailCapture.astro";
+import { SITE } from "../lib/site";
+import { getEntry } from "astro:content";
+
+const page = await getEntry("pages", "home");
+const d = page.data as Record<string, any>;
+
+const bookJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  name: SITE.book.title,
+  alternateName: SITE.book.subtitle,
+  author: {
+    "@type": "Person",
+    name: SITE.name,
+    url: SITE.url,
+  },
+  publisher: {
+    "@type": "Organization",
+    name: SITE.book.publisher,
+  },
+  description: SITE.description,
+};
+---
+
+<Layout jsonLd={bookJsonLd}>
+  <!-- Panel 1: Hero — centred single column with layered book images -->
+  <section class="section section--lg">
+    <div class="container hero-panel">
+      <h1>{d.heroHeadline}</h1>
+
+      <div class="book-stack">
+        <img
+          src="/images/routine.png"
+          alt="The Weekly Routine — sample page"
+          class="book-stack__bg book-stack__bg--left"
+          loading="eager"
+        />
+        <img
+          src="/images/cover.png"
+          alt="The Idea Drug book cover"
+          class="book-stack__cover"
+          width="280"
+          loading="eager"
+        />
+        <img
+          src="/images/why.png"
+          alt="Wrapping up Why — sample page"
+          class="book-stack__bg book-stack__bg--right"
+          loading="eager"
+        />
+      </div>
+
+      <p class="hero-date">Out {SITE.book.launchDate}</p>
+      <p class="hero-preorder">Pre-order <em>{SITE.book.title}</em> here</p>
+      <p class="hero-description">{d.heroDescription}</p>
+      <div class="hero-email">
+        <EmailCapture buttonText="Join my MAILING LIST" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Panel 2: Hello, I'm Mark — full-bleed dark row, image left, text right -->
+  <section class="section about-section">
+    <div class="container">
+      <div class="about-row">
+        <div class="about-image">
+          <img src="/images/mark.svg" alt="Mark Bjornsgaard" />
+        </div>
+        <div class="about-copy">
+          <h2>Hello, I'm Mark</h2>
+          <p>{d.markBio}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Panel 3: Book me to speak — centred, video embed -->
+  <section class="section section--lg">
+    <div class="container speaking-panel">
+      <h2>Book me to speak</h2>
+      <div class="video-embed">
+        <iframe
+          src="https://www.youtube.com/embed/juzK8LIoQX8"
+          title="Mark Bjornsgaard — The Idea Drug talk"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <p class="speaking-copy">{d.speakingDescription}</p>
+      <a href="/contact?subject=speaking" class="btn">Enquire HERE</a>
+    </div>
+  </section>
+
+  <!-- Panel 4: Welcome to System Two — grey, centred -->
+  <section class="section section--lg section--grey">
+    <div class="container s2-panel">
+      <h2>Welcome to System Two</h2>
+      <div class="s2-logo">
+        <img src="/images/system-two.svg" alt="System Two — startups in the enterprise" />
+      </div>
+      <p>Corporate innovation is broken.</p>
+      <p>Just 6% of executives are satisfied with their innovation disciplines.</p>
+      <p>We own the business we build for you, before we sell them back to you if we're successful.</p>
+      <p>Together with human APIs you appoint we use your capital, distribution and supply chains to deliver new businesses you may struggle to build yourselves.</p>
+      <a href="/contact?subject=system-two" class="btn">Enquire HERE</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  /* -------------------------------------------------------
+     Panel 1 — Hero
+     ------------------------------------------------------- */
+  .hero-panel {
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-panel h1 {
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  /* Layered book-spread: routine (left) — cover (centre) — why (right) */
+  .book-stack {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--sys-medium, 1.5rem);
+    height: 320px;
+    max-width: 520px;
+  }
+
+  .book-stack__cover {
+    position: relative;
+    z-index: 2;
+    height: 300px;
+    width: auto;
+    display: block;
+  }
+
+  .book-stack__bg {
+    position: absolute;
+    z-index: 1;
+    height: 260px;
+    width: auto;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .book-stack__bg--left {
+    left: 0;
+  }
+
+  .book-stack__bg--right {
+    right: 0;
+  }
+
+  .hero-date {
+    font-size: var(--sys-sizes-base, 17px);
+    margin-bottom: var(--sys-xxs, 0.44rem);
+  }
+
+  .hero-preorder {
+    margin-bottom: var(--sys-medium, 1.5rem);
+  }
+
+  .hero-description {
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .hero-email {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* -------------------------------------------------------
+     Panel 2 — Hello, I'm Mark (full-bleed darker row)
+     ------------------------------------------------------- */
+  .about-section {
+    background-color: var(--sys-surface-card, #F2F2F2);
+    border-top: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+    border-bottom: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+  }
+
+  .about-row {
+    display: flex;
+    gap: var(--sys-large, 2.25rem);
+    align-items: center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .about-image {
+    flex-shrink: 0;
+    width: 200px;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .about-copy h2 {
+    margin-bottom: var(--sys-small, 1rem);
+  }
+
+  /* -------------------------------------------------------
+     Panel 3 — Book me to speak (centred, video)
+     ------------------------------------------------------- */
+  .speaking-panel {
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .speaking-panel h2 {
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .video-embed {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto var(--sys-large, 2.25rem);
+    background: var(--sys-color-on-surface, #000);
+  }
+
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .speaking-copy {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  /* -------------------------------------------------------
+     Panel 4 — Welcome to System Two (grey, centred)
+     ------------------------------------------------------- */
+  .s2-panel {
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .s2-panel h2 {
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .s2-logo {
+    max-width: 420px;
+    margin: 0 auto var(--sys-xl, 3.38rem);
+  }
+
+  .s2-logo img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .s2-panel > p {
+    margin-bottom: var(--sys-small, 1rem);
+  }
+
+  .s2-panel .btn {
+    margin-top: var(--sys-medium, 1.5rem);
+  }
+
+  /* -------------------------------------------------------
+     Responsive
+     ------------------------------------------------------- */
+  @media (max-width: 768px) {
+    .about-row {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .about-image {
+      width: 160px;
+    }
+
+    .book-stack {
+      height: 240px;
+    }
+
+    .book-stack__cover {
+      height: 220px;
+    }
+
+    .book-stack__bg {
+      height: 190px;
+    }
+  }
+</style>

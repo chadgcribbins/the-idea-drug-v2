@@ -1,0 +1,180 @@
+---
+import { SITE } from "../lib/site";
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) =>
+  href === "/" ? currentPath === "/" : currentPath.startsWith(href);
+---
+
+<header class="site-header">
+  <nav class="nav" aria-label="Primary navigation">
+    <a href="/" class="nav-logo">{SITE.name}</a>
+
+    <button
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="Toggle navigation"
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </button>
+
+    <div class="nav-menu" id="nav-menu">
+      <ul class="nav-links" role="list">
+        {SITE.nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[{ "is-active": isActive(item.href) }]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <ul class="nav-links nav-links--right" role="list">
+        {SITE.navRight.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class:list={[{ "is-active": isActive(item.href) }]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: var(--sys-z-index-sticky, 200);
+    background: var(--sys-surface-page, #fff);
+    border-bottom: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--sys-small, 1rem) var(--sys-medium, 1.5rem);
+  }
+
+  .nav-logo {
+    font-family: var(--sys-font-family-display, 'Quattrocento Sans', sans-serif);
+    font-size: var(--sys-sizes-large, 20px);
+    font-weight: 700;
+    color: var(--sys-color-on-surface, #000);
+    text-decoration: none;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--sys-xxs, 0.44rem);
+  }
+
+  .nav-toggle-bar {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--sys-color-on-surface, #000);
+    transition: transform var(--sys-motion-duration, 200ms) ease, opacity var(--sys-motion-duration, 200ms) ease;
+  }
+
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--sys-large, 2.25rem);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--sys-medium, 1.5rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links a {
+    font-family: var(--sys-font-family-display, 'Quattrocento Sans', sans-serif);
+    font-size: var(--sys-sizes-small, 13px);
+    font-weight: 400;
+    color: var(--sys-color-on-surface-muted, #666);
+    text-decoration: none;
+    padding-bottom: var(--sys-xxs, 0.44rem);
+    border-bottom: 2px solid transparent;
+    transition: color var(--sys-motion-duration, 200ms) ease, border-color var(--sys-motion-duration, 200ms) ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--sys-color-on-surface, #000);
+  }
+
+  .nav-links a.is-active {
+    color: var(--sys-color-on-surface, #000);
+    border-bottom-color: var(--sys-color-nav-active, #D42020);
+  }
+
+  .nav-links--right {
+    padding-left: var(--sys-large, 2.25rem);
+    border-left: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+  }
+
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-menu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--sys-surface-page, #fff);
+      border-bottom: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+      padding: var(--sys-small, 1rem) var(--sys-medium, 1.5rem);
+      gap: var(--sys-small, 1rem);
+    }
+
+    .nav-menu.is-open {
+      display: flex;
+    }
+
+    .nav-links {
+      flex-direction: column;
+      gap: var(--sys-xs, 0.67rem);
+    }
+
+    .nav-links--right {
+      padding-left: 0;
+      border-left: none;
+      padding-top: var(--sys-xs, 0.67rem);
+      border-top: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.querySelector(".nav-menu");
+
+  toggle?.addEventListener("click", () => {
+    const isOpen = menu?.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+</script>

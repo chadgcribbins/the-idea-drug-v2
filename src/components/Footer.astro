@@ -1,0 +1,59 @@
+---
+import { SITE } from "../lib/site";
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="footer-name">{SITE.name.toUpperCase()}</p>
+    <p class="footer-meta">
+      Privacy & Terms of Use
+      <span class="footer-sep">|</span>
+      {SITE.footer.text}
+      <span class="footer-sep">|</span>
+      <a href={SITE.social.spotify} class="footer-link">Listen here</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--sys-surface-footer, #000);
+    padding: var(--sys-xl, 3.38rem) var(--sys-medium, 1.5rem);
+    margin-top: 0;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .footer-name {
+    font-family: var(--sys-font-family-display, 'Quattrocento Sans', sans-serif);
+    font-size: var(--sys-sizes-large, 20px);
+    font-weight: 700;
+    color: var(--sys-surface-footer-text, #fff);
+    margin: 0 0 var(--sys-small, 1rem);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-meta {
+    font-size: var(--sys-sizes-small, 13px);
+    color: var(--sys-surface-footer-muted, #999);
+    margin: 0;
+  }
+
+  .footer-sep {
+    margin: 0 var(--sys-xs, 0.67rem);
+  }
+
+  .footer-link {
+    color: var(--sys-surface-footer-muted, #999);
+    text-decoration: none;
+    transition: color var(--sys-motion-duration, 200ms) ease;
+  }
+
+  .footer-link:hover {
+    color: var(--sys-surface-footer-text, #fff);
+  }
+</style>

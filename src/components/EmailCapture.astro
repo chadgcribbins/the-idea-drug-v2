@@ -1,0 +1,85 @@
+---
+interface Props {
+  heading?: string;
+  buttonText?: string;
+  variant?: "inline" | "block";
+}
+
+const {
+  heading = "Join my mailing list",
+  buttonText = "JOIN my MAILING LIST",
+  variant = "inline",
+} = Astro.props;
+---
+
+<div class:list={["email-capture", `email-capture--${variant}`]}>
+  {variant === "block" && heading && (
+    <h3 class="email-capture-heading">{heading}</h3>
+  )}
+  <form class="email-capture-form" data-email-form>
+    <label for="email-input" class="sr-only">Email address</label>
+    <input
+      type="email"
+      id="email-input"
+      name="email"
+      placeholder="Email address"
+      required
+      autocomplete="email"
+    />
+    <button type="submit" class="btn">{buttonText}</button>
+  </form>
+</div>
+
+<style>
+  .email-capture--block {
+    max-width: 600px;
+  }
+
+  .email-capture-heading {
+    font-family: var(--sys-font-family-display, 'Quattrocento Sans', sans-serif);
+    font-size: var(--sys-sizes-large, 20px);
+    font-weight: 700;
+    margin: 0 0 var(--sys-small, 1rem);
+    color: var(--sys-color-on-surface, #000);
+  }
+
+  .email-capture-form {
+    display: flex;
+    gap: 0;
+  }
+
+  .email-capture-form input {
+    flex: 1;
+    padding: var(--sys-xs, 0.67rem) var(--sys-small, 1rem);
+    border: var(--comp-form-border-width, 1px) solid var(--comp-form-border, #D8D8D8);
+    border-right: none;
+    background: var(--comp-form-bg, #fff);
+    font-size: var(--sys-sizes-base, 17px);
+    color: var(--sys-color-on-surface, #000);
+    outline: none;
+  }
+
+  .email-capture-form input:focus {
+    border-color: var(--comp-form-focus-ring-color, #D42020);
+    box-shadow: 0 0 0 var(--comp-form-focus-ring-width, 2px) var(--comp-form-focus-ring-color, #D42020);
+  }
+
+  .email-capture-form button {
+    border-left: none;
+  }
+
+  @media (max-width: 480px) {
+    .email-capture-form {
+      flex-direction: column;
+    }
+
+    .email-capture-form input {
+      border-right: var(--comp-form-border-width, 1px) solid var(--comp-form-border, #D8D8D8);
+      border-bottom: none;
+    }
+
+    .email-capture-form button {
+      border-left: var(--comp-form-border-width, 1px) solid var(--sys-color-primary, #D42020);
+    }
+  }
+</style>

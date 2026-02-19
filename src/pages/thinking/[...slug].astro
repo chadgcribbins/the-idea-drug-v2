@@ -1,0 +1,91 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/\.md$/, "") },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+const formattedDate = post.data.date.toLocaleDateString("en-GB", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <article class="section section--lg">
+    <div class="container container--narrow">
+      <header class="post-header">
+        <h1>{post.data.title}</h1>
+        <p class="post-meta">
+          {post.data.readTime && <span>{post.data.readTime}</span>}
+          {post.data.readTime && <span class="post-sep">|</span>}
+          <span>{formattedDate}</span>
+        </p>
+      </header>
+
+      <hr class="divider-accent" />
+
+      <div class="post-body">
+        <Content />
+      </div>
+
+      <footer class="post-footer">
+        <a href="/thinking" class="btn--ghost">&larr; Back to Thinking</a>
+      </footer>
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .post-header {
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .post-header h1 {
+    margin-bottom: var(--sys-xs, 0.67rem);
+  }
+
+  .post-meta {
+    font-size: var(--sys-sizes-small, 13px);
+    color: var(--sys-color-on-surface-muted, #666);
+    margin: 0;
+  }
+
+  .post-sep {
+    margin: 0 var(--sys-xxs, 0.44rem);
+  }
+
+  .post-body {
+    line-height: var(--sys-line-height-loose, 1.8);
+  }
+
+  .post-body p {
+    margin-bottom: var(--sys-medium, 1.5rem);
+  }
+
+  .post-footer {
+    margin-top: var(--sys-xl, 3.38rem);
+    padding-top: var(--sys-large, 2.25rem);
+    border-top: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+  }
+
+  .post-footer a {
+    color: var(--sys-color-on-surface, #000);
+    text-decoration: none;
+    font-size: var(--sys-sizes-small, 13px);
+    transition: color var(--sys-motion-duration, 200ms) ease;
+  }
+
+  .post-footer a:hover {
+    color: var(--sys-color-primary, #D42020);
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+interface Logo {
+  name: string;
+  src?: string;
+}
+
+interface Props {
+  logos: Logo[];
+  greyscale?: boolean;
+}
+
+const { logos, greyscale = true } = Astro.props;
+---
+
+<div class:list={["press-grid", { "press-grid--greyscale": greyscale }]}>
+  {logos.map((logo) => (
+    <div class="press-logo">
+      {logo.src ? (
+        <img src={logo.src} alt={logo.name} loading="lazy" />
+      ) : (
+        <span class="press-logo-text">{logo.name}</span>
+      )}
+    </div>
+  ))}
+</div>
+
+<style>
+  .press-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--sys-medium, 1.5rem);
+    align-items: center;
+    justify-items: center;
+    padding: var(--sys-large, 2.25rem) 0;
+  }
+
+  .press-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--sys-xxs, 0.44rem);
+  }
+
+  .press-logo img {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .press-grid--greyscale .press-logo img {
+    filter: grayscale(100%);
+    opacity: 0.7;
+    transition: filter var(--sys-motion-duration, 200ms) ease, opacity var(--sys-motion-duration, 200ms) ease;
+  }
+
+  .press-grid--greyscale .press-logo img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+  }
+
+  .press-logo-text {
+    font-family: var(--sys-font-family-display, 'Quattrocento Sans', sans-serif);
+    font-size: var(--sys-sizes-small, 13px);
+    font-weight: 700;
+    color: var(--sys-color-on-surface-muted, #666);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 768px) {
+    .press-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .press-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

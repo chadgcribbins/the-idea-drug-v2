@@ -1,0 +1,57 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PostCard from "../components/PostCard.astro";
+import { getEntry, getCollection } from "astro:content";
+
+const page = await getEntry("pages", "thinking");
+const d = page.data as Record<string, any>;
+
+const posts = (await getCollection("posts"))
+  .filter((p) => p.data.published)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title={d.title} description={d.description}>
+  <section class="section section--lg">
+    <div class="container thinking-content">
+      <h1>System Thinking</h1>
+      <p class="intro">{d.intro}</p>
+      <div class="posts-list">
+        {posts.map((post) => (
+          <PostCard
+            title={post.data.title}
+            slug={post.id.replace(/\.md$/, "")}
+            date={post.data.date}
+            readTime={post.data.readTime}
+            image={post.data.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .thinking-content {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .thinking-content h1 {
+    text-align: center;
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .intro {
+    font-size: var(--sys-sizes-large, 20px);
+    color: var(--sys-color-on-surface-muted, #666);
+    line-height: var(--sys-line-height-loose, 1.8);
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+  }
+</style>

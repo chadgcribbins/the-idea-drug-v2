@@ -1,0 +1,25 @@
+{
+  "name": "the-idea-drug-v2",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.29.3",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "style-dictionary build --config sd.config.js && astro build",
+    "preview": "astro preview",
+    "deploy": "vercel deploy --prod",
+    "tokens:build": "style-dictionary build --config sd.config.js"
+  },
+  "dependencies": {
+    "astro": "^5.4.0",
+    "gray-matter": "^4.0.3",
+    "markdown-it": "^14.1.0"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.2.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild", "sharp"]
+  }
+}

@@ -1,0 +1,99 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  date: Date;
+  readTime?: string;
+  image?: string;
+}
+
+const { title, slug, date, readTime, image } = Astro.props;
+
+const formattedDate = date.toLocaleDateString("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+});
+---
+
+<a href={`/thinking/${slug}`} class="post-card">
+  {image && (
+    <div class="post-card-image">
+      <img src={image} alt="" loading="lazy" />
+    </div>
+  )}
+  <div class="post-card-body">
+    <h3 class="post-card-title">{title}</h3>
+    <p class="post-card-meta">
+      {readTime && <span>{readTime}</span>}
+      {readTime && <span class="post-card-sep">|</span>}
+      <span>{formattedDate}</span>
+    </p>
+  </div>
+</a>
+
+<style>
+  .post-card {
+    display: flex;
+    gap: var(--sys-medium, 1.5rem);
+    text-decoration: none;
+    color: inherit;
+    padding: var(--sys-medium, 1.5rem) 0;
+    border-bottom: 1px solid var(--sys-color-divider, #D8D8D8);
+    transition: opacity var(--sys-motion-duration, 200ms) ease;
+  }
+
+  .post-card:hover {
+    opacity: 0.8;
+  }
+
+  .post-card-image {
+    flex-shrink: 0;
+    width: 160px;
+    height: 120px;
+    overflow: hidden;
+  }
+
+  .post-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .post-card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .post-card-title {
+    font-family: var(--sys-font-family-display, 'Quattrocento Sans', sans-serif);
+    font-size: var(--sys-sizes-large, 20px);
+    font-weight: 700;
+    color: var(--sys-color-on-surface, #000);
+    margin: 0 0 var(--sys-xxs, 0.44rem);
+    line-height: var(--sys-line-height-tight, 1.3);
+  }
+
+  .post-card-meta {
+    font-size: var(--sys-sizes-small, 13px);
+    color: var(--sys-color-on-surface-muted, #666);
+    margin: 0;
+  }
+
+  .post-card-sep {
+    margin: 0 var(--sys-xxs, 0.44rem);
+  }
+
+  @media (max-width: 480px) {
+    .post-card {
+      flex-direction: column;
+      gap: var(--sys-small, 1rem);
+    }
+
+    .post-card-image {
+      width: 100%;
+      height: 180px;
+    }
+  }
+</style>

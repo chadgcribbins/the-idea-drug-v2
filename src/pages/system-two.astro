@@ -1,0 +1,53 @@
+---
+import Layout from "../layouts/Layout.astro";
+import PressLogoGrid from "../components/PressLogoGrid.astro";
+import { getEntry } from "astro:content";
+
+const page = await getEntry("pages", "system-two");
+const d = page.data as Record<string, any>;
+---
+
+<Layout title={d.title} description={d.description}>
+  <section class="section section--lg">
+    <div class="container">
+      <h1 class="text-center">{d.headline}</h1>
+
+      <div class="logos-section">
+        <PressLogoGrid logos={d.pressLogos} />
+      </div>
+
+      <div class="body-copy">
+        <p>{d.body}</p>
+        <p>{d.body2}</p>
+        <p>{d.cta}</p>
+        <p class="ceo-highlight"><strong>{d.ctaHighlight}</strong></p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  h1 {
+    margin-bottom: var(--sys-large, 2.25rem);
+  }
+
+  .logos-section {
+    margin-bottom: var(--sys-xl, 3.38rem);
+  }
+
+  .body-copy {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .body-copy p {
+    margin-bottom: var(--sys-medium, 1.5rem);
+    line-height: var(--sys-line-height-loose, 1.8);
+  }
+
+  .ceo-highlight {
+    font-size: var(--sys-sizes-large, 20px);
+    margin-top: var(--sys-small, 1rem);
+  }
+</style>

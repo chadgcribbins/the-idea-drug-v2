@@ -1,0 +1,886 @@
+{
+  "$schema": "https://design-tokens.org/schemas/v2025.10/",
+  "$version": "2.0.0",
+  "$description": "Design System Tokens – The Idea Drug v2 (editorial, minimal, print-influenced)",
+  "$extensions": {
+    "internalOnlyPolicy": "Drop any token with $extensions.internalOnly from public outputs."
+  },
+  "project": {},
+  "reference": {
+    "$description": "Base palette and primitives",
+    "palette": {
+      "brand": {
+        "primary": {
+          "$value": "#D42020",
+          "$type": "color",
+          "$description": "Cover red — single accent colour, used sparingly for dividers, focus rings, link hovers, active nav indicators"
+        },
+        "secondary": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "White — clean page background"
+        },
+        "tertiary": {
+          "$value": "#000000",
+          "$type": "color",
+          "$description": "Black — primary text, nav logo"
+        },
+        "primaryHover": {
+          "$value": "#B01A1A",
+          "$type": "color",
+          "$description": "Darker red for primary button hover state"
+        }
+      },
+      "feedback": {
+        "error": {
+          "$value": "#DC2626",
+          "$type": "color",
+          "$description": "Distinct from brand red — more orange-red for form errors"
+        },
+        "success": {
+          "$value": "#16A34A",
+          "$type": "color"
+        },
+        "warning": {
+          "$value": "#CA8A04",
+          "$type": "color"
+        }
+      },
+      "neutral": {
+        "0": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "50": {
+          "$value": "#F9F9F9",
+          "$type": "color"
+        },
+        "100": {
+          "$value": "#F2F2F2",
+          "$type": "color",
+          "$description": "Panel background — alternating sections"
+        },
+        "200": {
+          "$value": "#D8D8D8",
+          "$type": "color",
+          "$description": "Borders and dividers"
+        },
+        "300": {
+          "$value": "#BFBFBF",
+          "$type": "color"
+        },
+        "400": {
+          "$value": "#999999",
+          "$type": "color"
+        },
+        "500": {
+          "$value": "#666666",
+          "$type": "color",
+          "$description": "Muted/secondary text"
+        },
+        "600": {
+          "$value": "#4D4D4D",
+          "$type": "color"
+        },
+        "700": {
+          "$value": "#333333",
+          "$type": "color"
+        },
+        "800": {
+          "$value": "#1A1A1A",
+          "$type": "color"
+        },
+        "900": {
+          "$value": "#111111",
+          "$type": "color"
+        },
+        "950": {
+          "$value": "#000000",
+          "$type": "color"
+        }
+      }
+    },
+    "spacing": {
+      "$description": "Named spacing scale (rem-based)",
+      "xxs": {
+        "$value": "0.44rem",
+        "$type": "dimension"
+      },
+      "xs": {
+        "$value": "0.67rem",
+        "$type": "dimension"
+      },
+      "small": {
+        "$value": "1rem",
+        "$type": "dimension"
+      },
+      "medium": {
+        "$value": "1.5rem",
+        "$type": "dimension"
+      },
+      "large": {
+        "$value": "2.25rem",
+        "$type": "dimension"
+      },
+      "xl": {
+        "$value": "3.38rem",
+        "$type": "dimension"
+      },
+      "xxl": {
+        "$value": "5.06rem",
+        "$type": "dimension"
+      },
+      "gutterSize": {
+        "$value": "2em",
+        "$type": "dimension"
+      },
+      "pagePadding": {
+        "$value": "100px",
+        "$type": "dimension"
+      },
+      "cardPadding": {
+        "$value": "24px",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "$description": "All square corners — no rounding anywhere",
+      "none": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "small": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "medium": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "large": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "pill": {
+        "$value": "0px",
+        "$type": "dimension"
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "display": {
+          "$value": "'Quattrocento Sans', sans-serif",
+          "$type": "fontFamily",
+          "$description": "Quattrocento Sans — restrained, slightly academic, print-influenced"
+        },
+        "body": {
+          "$value": "Georgia, 'Times New Roman', serif",
+          "$type": "fontFamily",
+          "$description": "Georgia — classic serif body text, editorial feel"
+        },
+        "mono": {
+          "$value": "monospace",
+          "$type": "fontFamily"
+        }
+      },
+      "scaleRatio": {
+        "$value": 1.25,
+        "$type": "number"
+      },
+      "lineHeight": {
+        "$value": 1.6,
+        "$type": "number",
+        "$description": "Slightly more generous for Georgia readability"
+      },
+      "lineHeightTight": {
+        "$value": 1.3,
+        "$type": "number"
+      },
+      "lineHeightLoose": {
+        "$value": 1.8,
+        "$type": "number"
+      },
+      "letterSpacing": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "sizes": {
+        "small": {
+          "$value": "13px",
+          "$type": "dimension"
+        },
+        "base": {
+          "$value": "17px",
+          "$type": "dimension",
+          "$description": "Slightly smaller base for Georgia which reads larger than sans-serif at same size"
+        },
+        "large": {
+          "$value": "20px",
+          "$type": "dimension"
+        },
+        "xlarge": {
+          "$value": "32px",
+          "$type": "dimension"
+        },
+        "hero": {
+          "$value": "38px",
+          "$type": "dimension"
+        },
+        "h4": {
+          "$value": "20px",
+          "$type": "dimension"
+        },
+        "h5": {
+          "$value": "17px",
+          "$type": "dimension"
+        }
+      }
+    }
+  },
+  "system": {
+    "$description": "Semantic tokens",
+    "color": {
+      "primary": {
+        "$value": "{reference.palette.brand.primary}",
+        "$type": "color",
+        "$description": "Cover red — accent only: dividers, focus rings, link hovers, active nav"
+      },
+      "secondary": {
+        "$value": "{reference.palette.brand.secondary}",
+        "$type": "color"
+      },
+      "tertiary": {
+        "$value": "{reference.palette.brand.tertiary}",
+        "$type": "color"
+      },
+      "error": {
+        "$value": "{reference.palette.feedback.error}",
+        "$type": "color"
+      },
+      "success": {
+        "$value": "{reference.palette.feedback.success}",
+        "$type": "color"
+      },
+      "warning": {
+        "$value": "{reference.palette.feedback.warning}",
+        "$type": "color"
+      },
+      "primaryHover": {
+        "$value": "{reference.palette.brand.primaryHover}",
+        "$type": "color",
+        "$description": "Darker red for primary button/CTA hover"
+      },
+      "actionDefault": {
+        "$value": "transparent",
+        "$type": "color",
+        "$description": "Bordered buttons — transparent bg with border"
+      },
+      "actionHover": {
+        "$value": "{reference.palette.neutral.950}",
+        "$type": "color",
+        "$description": "On hover, fill black"
+      },
+      "actionActive": {
+        "$value": "{reference.palette.neutral.800}",
+        "$type": "color"
+      },
+      "actionText": {
+        "$value": "{reference.palette.neutral.950}",
+        "$type": "color",
+        "$description": "Black text on bordered buttons (inverts to white on hover)"
+      },
+      "actionBorder": {
+        "$value": "{reference.palette.neutral.950}",
+        "$type": "color",
+        "$description": "Black border for understated buttons"
+      },
+      "focusRing": {
+        "$value": "{reference.palette.brand.primary}",
+        "$type": "color",
+        "$description": "Red focus ring — accessibility indicator using brand accent"
+      },
+      "link": {
+        "$value": "{reference.palette.neutral.950}",
+        "$type": "color",
+        "$description": "Black links by default"
+      },
+      "linkHover": {
+        "$value": "{reference.palette.brand.primary}",
+        "$type": "color",
+        "$description": "Red on hover — subtle accent usage"
+      },
+      "controlChecked": {
+        "$value": "{reference.palette.brand.primary}",
+        "$type": "color"
+      },
+      "toggleActive": {
+        "$value": "{reference.palette.brand.primary}",
+        "$type": "color"
+      },
+      "toggleInactive": {
+        "$value": "{reference.palette.neutral.200}",
+        "$type": "color"
+      },
+      "overlay": {
+        "$value": "{reference.palette.neutral.950}",
+        "$type": "color"
+      },
+      "divider": {
+        "$value": "{reference.palette.neutral.200}",
+        "$type": "color"
+      },
+      "onSurface": {
+        "$value": "{reference.palette.neutral.950}",
+        "$type": "color"
+      },
+      "onSurfaceMuted": {
+        "$value": "{reference.palette.neutral.500}",
+        "$type": "color"
+      },
+      "outlineVariant": {
+        "$value": "{reference.palette.neutral.200}",
+        "$type": "color"
+      },
+      "navActive": {
+        "$value": "{reference.palette.brand.primary}",
+        "$type": "color",
+        "$description": "Active nav indicator — underline in red"
+      }
+    },
+    "surface": {
+      "cardFill": {
+        "$value": "{reference.palette.neutral.100}",
+        "$type": "color",
+        "$description": "Light grey panel background for alternating sections"
+      },
+      "pageBackground": {
+        "$value": "{reference.palette.brand.secondary}",
+        "$type": "color",
+        "$description": "White page background"
+      },
+      "surface2": {
+        "$value": "{reference.palette.neutral.50}",
+        "$type": "color"
+      },
+      "border": {
+        "$value": "{reference.palette.neutral.200}",
+        "$type": "color",
+        "$description": "Light grey borders (#D8D8D8)"
+      },
+      "formField": {
+        "$value": "{reference.palette.neutral.0}",
+        "$type": "color"
+      },
+      "formBorder": {
+        "$value": "{reference.palette.neutral.200}",
+        "$type": "color"
+      },
+      "footer": {
+        "$value": "{reference.palette.neutral.950}",
+        "$type": "color",
+        "$description": "Black footer background"
+      },
+      "footerText": {
+        "$value": "{reference.palette.neutral.0}",
+        "$type": "color",
+        "$description": "White footer text"
+      },
+      "footerMuted": {
+        "$value": "{reference.palette.neutral.400}",
+        "$type": "color",
+        "$description": "Muted grey footer links"
+      },
+      "shadows": {
+        "natural": {
+          "$value": "none",
+          "$type": "shadow",
+          "$description": "No decorative shadows — minimal aesthetic"
+        },
+        "image": {
+          "$value": "none",
+          "$type": "shadow",
+          "$description": "No image shadows"
+        }
+      },
+      "patterns": {
+        "paper": {
+          "$value": "none",
+          "$type": "string"
+        },
+        "stripe": {
+          "$value": "none",
+          "$type": "string"
+        },
+        "glowPrimary": {
+          "$value": "transparent",
+          "$type": "color"
+        },
+        "glowSecondary": {
+          "$value": "transparent",
+          "$type": "color"
+        }
+      }
+    },
+    "typography": {
+      "fontFamily": {
+        "display": {
+          "$value": "{reference.typography.fontFamily.display}",
+          "$type": "fontFamily"
+        },
+        "body": {
+          "$value": "{reference.typography.fontFamily.body}",
+          "$type": "fontFamily"
+        },
+        "mono": {
+          "$value": "{reference.typography.fontFamily.mono}",
+          "$type": "fontFamily"
+        }
+      },
+      "scaleRatio": {
+        "$value": "{reference.typography.scaleRatio}",
+        "$type": "number"
+      },
+      "lineHeight": {
+        "$value": "{reference.typography.lineHeight}",
+        "$type": "number"
+      },
+      "lineHeightTight": {
+        "$value": "{reference.typography.lineHeightTight}",
+        "$type": "number"
+      },
+      "lineHeightLoose": {
+        "$value": "{reference.typography.lineHeightLoose}",
+        "$type": "number"
+      },
+      "letterSpacing": {
+        "$value": "{reference.typography.letterSpacing}",
+        "$type": "dimension"
+      },
+      "sizes": {
+        "small": {
+          "$value": "{reference.typography.sizes.small}",
+          "$type": "dimension"
+        },
+        "base": {
+          "$value": "{reference.typography.sizes.base}",
+          "$type": "dimension"
+        },
+        "large": {
+          "$value": "{reference.typography.sizes.large}",
+          "$type": "dimension"
+        },
+        "xlarge": {
+          "$value": "{reference.typography.sizes.xlarge}",
+          "$type": "dimension"
+        },
+        "hero": {
+          "$value": "{reference.typography.sizes.hero}",
+          "$type": "dimension"
+        }
+      }
+    },
+    "spacing": {
+      "xxs": {
+        "$value": "{reference.spacing.xxs}",
+        "$type": "dimension"
+      },
+      "xs": {
+        "$value": "{reference.spacing.xs}",
+        "$type": "dimension"
+      },
+      "small": {
+        "$value": "{reference.spacing.small}",
+        "$type": "dimension"
+      },
+      "medium": {
+        "$value": "{reference.spacing.medium}",
+        "$type": "dimension"
+      },
+      "large": {
+        "$value": "{reference.spacing.large}",
+        "$type": "dimension"
+      },
+      "xl": {
+        "$value": "{reference.spacing.xl}",
+        "$type": "dimension"
+      },
+      "xxl": {
+        "$value": "{reference.spacing.xxl}",
+        "$type": "dimension"
+      },
+      "gutterSize": {
+        "$value": "{reference.spacing.gutterSize}",
+        "$type": "dimension"
+      },
+      "pagePadding": {
+        "$value": "{reference.spacing.pagePadding}",
+        "$type": "dimension"
+      },
+      "cardPadding": {
+        "$value": "{reference.spacing.cardPadding}",
+        "$type": "dimension"
+      }
+    },
+    "radius": {
+      "small": {
+        "$value": "{reference.radius.small}",
+        "$type": "dimension"
+      },
+      "medium": {
+        "$value": "{reference.radius.medium}",
+        "$type": "dimension"
+      },
+      "large": {
+        "$value": "{reference.radius.large}",
+        "$type": "dimension"
+      },
+      "pill": {
+        "$value": "{reference.radius.pill}",
+        "$type": "dimension"
+      }
+    },
+    "governors": {
+      "form": {
+        "inputHeight": {
+          "$value": "44px",
+          "$type": "dimension"
+        },
+        "borderWidth": {
+          "$value": "1px",
+          "$type": "dimension"
+        },
+        "controlSize": {
+          "$value": "16px",
+          "$type": "dimension"
+        },
+        "controlRadius": {
+          "$value": "0px",
+          "$type": "dimension"
+        },
+        "radioDotSize": {
+          "$value": "8px",
+          "$type": "dimension"
+        },
+        "toggleWidth": {
+          "$value": "36px",
+          "$type": "dimension"
+        },
+        "toggleHeight": {
+          "$value": "20px",
+          "$type": "dimension"
+        },
+        "toggleThumbSize": {
+          "$value": "16px",
+          "$type": "dimension"
+        },
+        "focusRingWidth": {
+          "$value": "2px",
+          "$type": "dimension"
+        }
+      },
+      "button": {
+        "height": {
+          "$value": "44px",
+          "$type": "dimension"
+        },
+        "padding": {
+          "$value": "10px 24px",
+          "$type": "dimension"
+        },
+        "radius": {
+          "$value": "{reference.radius.none}",
+          "$type": "dimension"
+        },
+        "fontSize": {
+          "$value": "14px",
+          "$type": "dimension",
+          "$description": "Smaller, restrained button text"
+        },
+        "borderWidth": {
+          "$value": "1px",
+          "$type": "dimension",
+          "$description": "Thin border for understated buttons"
+        }
+      },
+      "action": {
+        "focusRingWidth": {
+          "$value": "2px",
+          "$type": "dimension"
+        }
+      }
+    },
+    "layout": {
+      "columns": {
+        "$value": 12,
+        "$type": "number"
+      },
+      "mobileColumns": {
+        "$value": 4,
+        "$type": "number"
+      },
+      "breakpoints": {
+        "mobile": {
+          "$value": "768px",
+          "$type": "dimension"
+        },
+        "tablet": {
+          "$value": "992px",
+          "$type": "dimension"
+        },
+        "desktop": {
+          "$value": "1025px",
+          "$type": "dimension"
+        }
+      }
+    },
+    "gradient": {},
+    "textGradient": {},
+    "motion": {
+      "duration": {
+        "$value": "200ms",
+        "$type": "duration"
+      },
+      "cubicBezier": {
+        "$value": [0.4, 0, 0.2, 1],
+        "$type": "cubicBezier"
+      }
+    },
+    "accessibility": {},
+    "zIndex": {
+      "base": {
+        "$value": 0,
+        "$type": "number"
+      },
+      "dropdown": {
+        "$value": 100,
+        "$type": "number"
+      },
+      "sticky": {
+        "$value": 200,
+        "$type": "number"
+      },
+      "modal": {
+        "$value": 300,
+        "$type": "number"
+      },
+      "popover": {
+        "$value": 400,
+        "$type": "number"
+      },
+      "toast": {
+        "$value": 500,
+        "$type": "number"
+      }
+    },
+    "divider": {
+      "thickness": {
+        "$value": "1px",
+        "$type": "dimension",
+        "$description": "Thin borders — understated"
+      },
+      "color": {
+        "$value": "{system.color.outlineVariant}",
+        "$type": "color"
+      },
+      "opacity": {
+        "$value": 100,
+        "$type": "number"
+      },
+      "inset": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "accentColor": {
+        "$value": "{system.color.primary}",
+        "$type": "color",
+        "$description": "Single red accent for section dividers"
+      },
+      "accentThickness": {
+        "$value": "3px",
+        "$type": "dimension",
+        "$description": "Slightly thinner accent than v1"
+      }
+    }
+  },
+  "component": {
+    "$description": "Component-specific tokens",
+    "action": {
+      "defaultBg": {
+        "$value": "{system.color.actionDefault}",
+        "$type": "color",
+        "$description": "Transparent — bordered button style"
+      },
+      "hoverBg": {
+        "$value": "{system.color.actionHover}",
+        "$type": "color",
+        "$description": "Black fill on hover"
+      },
+      "activeBg": {
+        "$value": "{system.color.actionActive}",
+        "$type": "color"
+      },
+      "textColor": {
+        "$value": "{system.color.actionText}",
+        "$type": "color",
+        "$description": "Black text (inverts to white on hover)"
+      },
+      "borderColor": {
+        "$value": "{system.color.actionBorder}",
+        "$type": "color",
+        "$description": "Black border"
+      },
+      "hoverTextColor": {
+        "$value": "{reference.palette.neutral.0}",
+        "$type": "color",
+        "$description": "White text on hover when bg fills black"
+      },
+      "focusRingWidth": {
+        "$value": "{system.governors.action.focusRingWidth}",
+        "$type": "dimension"
+      },
+      "disabledOpacity": {
+        "$value": 0.4,
+        "$type": "number"
+      }
+    },
+    "form": {
+      "inputHeight": {
+        "$value": "{system.governors.form.inputHeight}",
+        "$type": "dimension"
+      },
+      "borderWidth": {
+        "$value": "{system.governors.form.borderWidth}",
+        "$type": "dimension"
+      },
+      "borderColor": {
+        "$value": "{system.surface.formBorder}",
+        "$type": "color"
+      },
+      "background": {
+        "$value": "{system.surface.formField}",
+        "$type": "color"
+      },
+      "focusRingWidth": {
+        "$value": "{system.governors.form.focusRingWidth}",
+        "$type": "dimension"
+      },
+      "focusRingColor": {
+        "$value": "{system.color.focusRing}",
+        "$type": "color"
+      },
+      "controlSize": {
+        "$value": "{system.governors.form.controlSize}",
+        "$type": "dimension"
+      },
+      "controlRadius": {
+        "$value": "{system.governors.form.controlRadius}",
+        "$type": "dimension"
+      },
+      "controlCheckedColor": {
+        "$value": "{system.color.controlChecked}",
+        "$type": "color"
+      },
+      "errorColor": {
+        "$value": "{system.color.error}",
+        "$type": "color"
+      },
+      "successColor": {
+        "$value": "{system.color.success}",
+        "$type": "color"
+      }
+    },
+    "button": {
+      "height": {
+        "$value": "{system.governors.button.height}",
+        "$type": "dimension"
+      },
+      "padding": {
+        "$value": "{system.governors.button.padding}",
+        "$type": "dimension"
+      },
+      "radius": {
+        "$value": "{system.governors.button.radius}",
+        "$type": "dimension"
+      },
+      "fontSize": {
+        "$value": "{system.governors.button.fontSize}",
+        "$type": "dimension"
+      },
+      "borderWidth": {
+        "$value": "{system.governors.button.borderWidth}",
+        "$type": "dimension"
+      }
+    },
+    "input": {
+      "height": {
+        "$value": "{system.governors.form.inputHeight}",
+        "$type": "dimension"
+      },
+      "elevation": {
+        "$value": 0,
+        "$type": "number"
+      }
+    },
+    "imagery": {
+      "objectFit": {
+        "$value": "cover",
+        "$type": "string"
+      },
+      "overlayColor": {
+        "$value": "{system.color.overlay}",
+        "$type": "color"
+      },
+      "overlayOpacity": {
+        "$value": 0,
+        "$type": "number"
+      },
+      "borderWidth": {
+        "$value": "0px",
+        "$type": "dimension"
+      },
+      "shadow": {
+        "$value": false,
+        "$type": "boolean",
+        "$description": "No image shadows — minimal"
+      }
+    },
+    "icon": {
+      "strokeWidth": {
+        "$value": 1.5,
+        "$type": "number"
+      }
+    }
+  },
+  "logo": {
+    "$description": "Logo system tokens",
+    "colorVariants": {},
+    "sizes": {
+      "favicon": {
+        "width": {
+          "$value": 32,
+          "$type": "number"
+        },
+        "height": {
+          "$value": 32,
+          "$type": "number"
+        }
+      }
+    },
+    "usageRules": {
+      "clearSpaceMultiplier": {
+        "$value": 1.5,
+        "$type": "number"
+      },
+      "minimumSizeScreen": {
+        "$value": "16px",
+        "$type": "dimension"
+      }
+    }
+  },
+  "metadata": {
+    "projectId": "the-idea-drug-v2",
+    "compilerVersion": "2.9.7",
+    "sourceReference": "Mark Bjornsgaard feedback sketches (Feb 2026)",
+    "designDirection": "Minimal, editorial, high whitespace, print-influenced, understated confidence"
+  }
+}
