@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import PressLogoGrid from "../components/PressLogoGrid.astro";
 import { getEntry } from "astro:content";
 
 const page = await getEntry("pages", "system-two");
@@ -12,8 +11,12 @@ const d = page.data as Record<string, any>;
     <div class="container">
       <h1 class="text-center">{d.headline}</h1>
 
-      <div class="logos-section">
-        <PressLogoGrid logos={d.pressLogos} />
+      <div class="hero-image">
+        <img
+          src="/images/system-two-image.svg"
+          alt="System Two — startups in the enterprise"
+          loading="eager"
+        />
       </div>
 
       <div class="body-copy">
@@ -31,8 +34,15 @@ const d = page.data as Record<string, any>;
     margin-bottom: var(--sys-large, 2.25rem);
   }
 
-  .logos-section {
-    margin-bottom: var(--sys-xl, 3.38rem);
+  .hero-image {
+    max-width: 720px;
+    margin: 0 auto var(--sys-xl, 3.5rem);
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .body-copy {

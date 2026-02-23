@@ -145,6 +145,7 @@ export default {
           options: {
             outputReferences: true,
           },
+          filter: (token) => !token.path.includes('compositions'),
         },
       ],
     },
@@ -155,6 +156,7 @@ export default {
         {
           destination: 'tokens.generated.ts',
           format: 'javascript/es6',
+          filter: (token) => !token.path.includes('compositions'),
         },
       ],
     },

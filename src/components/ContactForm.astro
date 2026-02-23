@@ -44,7 +44,7 @@ const { prefill = "" } = Astro.props;
     font-family: var(--sys-font-family-display, 'Quattrocento Sans', sans-serif);
     font-size: var(--sys-sizes-small, 13px);
     font-weight: 700;
-    color: var(--sys-color-on-surface, #000);
+    color: var(--sys-color-on-surface, #222);
     padding-top: var(--sys-xs, 0.67rem);
     text-align: right;
   }
@@ -52,10 +52,10 @@ const { prefill = "" } = Astro.props;
   .form-row input,
   .form-row textarea {
     padding: var(--sys-xs, 0.67rem) var(--sys-small, 1rem);
-    border: var(--comp-form-border-width, 1px) solid var(--comp-form-border, #D8D8D8);
+    border: var(--comp-form-border-width, 1px) solid var(--comp-form-border, #D9D6D0);
     background: var(--comp-form-bg, #fff);
     font-size: var(--sys-sizes-base, 17px);
-    color: var(--sys-color-on-surface, #000);
+    color: var(--sys-color-on-surface, #222);
     outline: none;
     transition: border-color var(--sys-motion-duration, 200ms) ease;
   }
@@ -87,6 +87,7 @@ const { prefill = "" } = Astro.props;
 
     .form-row label {
       padding-top: 0;
+      text-align: left;
     }
 
     .form-row--submit {

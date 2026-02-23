@@ -18,12 +18,12 @@ import { SITE } from "../lib/site";
 <style>
   .site-footer {
     background: var(--sys-surface-footer, #000);
-    padding: var(--sys-xl, 3.38rem) var(--sys-medium, 1.5rem);
+    padding: var(--sys-xl, 3.5rem) var(--sys-medium, 1.5rem);
     margin-top: 0;
   }
 
   .footer-inner {
-    max-width: 1200px;
+    max-width: var(--sys-layout-max-width, 960px);
     margin: 0 auto;
     text-align: center;
   }
@@ -55,5 +55,17 @@ import { SITE } from "../lib/site";
 
   .footer-link:hover {
     color: var(--sys-surface-footer-text, #fff);
+  }
+
+  @media (max-width: 480px) {
+    .footer-meta {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sys-xxs, 0.44rem);
+    }
+
+    .footer-sep {
+      display: none;
+    }
   }
 </style>

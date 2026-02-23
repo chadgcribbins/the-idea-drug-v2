@@ -1,6 +1,5 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import EmailCapture from "../components/EmailCapture.astro";
 import { SITE } from "../lib/site";
 import { getEntry } from "astro:content";
 
@@ -54,10 +53,10 @@ const bookJsonLd = {
       </div>
 
       <p class="hero-date">Out {SITE.book.launchDate}</p>
-      <p class="hero-preorder">Pre-order <em>{SITE.book.title}</em> here</p>
+      <p class="hero-preorder">Pre-order <em>{SITE.book.title}</em> soon</p>
       <p class="hero-description">{d.heroDescription}</p>
-      <div class="hero-email">
-        <EmailCapture buttonText="Join my MAILING LIST" />
+      <div class="hero-cta">
+        <a href="/contact" class="btn">Get in TOUCH</a>
       </div>
     </div>
   </section>
@@ -100,8 +99,15 @@ const bookJsonLd = {
   <section class="section section--lg section--grey">
     <div class="container s2-panel">
       <h2>Welcome to System Two</h2>
-      <div class="s2-logo">
-        <img src="/images/system-two.svg" alt="System Two — startups in the enterprise" />
+      <div class="s2-video">
+        <iframe
+          src="https://www.youtube.com/embed/RbRjGuzGszc"
+          title="System Two — startups in the enterprise"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
       </div>
       <p>Corporate innovation is broken.</p>
       <p>Just 6% of executives are satisfied with their innovation disciplines.</p>
@@ -133,15 +139,16 @@ const bookJsonLd = {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    max-width: 380px;
+    height: 340px;
     margin: 0 auto var(--sys-medium, 1.5rem);
-    height: 320px;
-    max-width: 520px;
   }
 
   .book-stack__cover {
     position: relative;
     z-index: 2;
-    height: 300px;
+    height: 280px;
     width: auto;
     display: block;
   }
@@ -149,18 +156,18 @@ const bookJsonLd = {
   .book-stack__bg {
     position: absolute;
     z-index: 1;
-    height: 260px;
+    height: 230px;
     width: auto;
     top: 50%;
     transform: translateY(-50%);
   }
 
   .book-stack__bg--left {
-    left: 0;
+    left: -10px;
   }
 
   .book-stack__bg--right {
-    right: 0;
+    right: -10px;
   }
 
   .hero-date {
@@ -176,7 +183,7 @@ const bookJsonLd = {
     margin-bottom: var(--sys-large, 2.25rem);
   }
 
-  .hero-email {
+  .hero-cta {
     display: flex;
     justify-content: center;
   }
@@ -185,9 +192,9 @@ const bookJsonLd = {
      Panel 2 — Hello, I'm Mark (full-bleed darker row)
      ------------------------------------------------------- */
   .about-section {
-    background-color: var(--sys-surface-card, #F2F2F2);
-    border-top: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
-    border-bottom: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D8D8D8);
+    background-color: var(--sys-surface-card, #F5F4F0);
+    border-top: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D9D6D0);
+    border-bottom: var(--sys-divider-thickness, 1px) solid var(--sys-color-divider, #D9D6D0);
   }
 
   .about-row {
@@ -207,6 +214,7 @@ const bookJsonLd = {
     width: 100%;
     height: auto;
     display: block;
+    box-shadow: var(--sys-surface-shadows-md, 0 6px 20px rgba(0,0,0,0.18));
   }
 
   .about-copy h2 {
@@ -233,7 +241,8 @@ const bookJsonLd = {
     max-width: 560px;
     aspect-ratio: 16 / 9;
     margin: 0 auto var(--sys-large, 2.25rem);
-    background: var(--sys-color-on-surface, #000);
+    background: var(--sys-color-on-surface, #222);
+    box-shadow: var(--sys-surface-shadows-md, 0 6px 20px rgba(0,0,0,0.18));
   }
 
   .video-embed iframe {
@@ -265,15 +274,22 @@ const bookJsonLd = {
     margin-bottom: var(--sys-large, 2.25rem);
   }
 
-  .s2-logo {
-    max-width: 420px;
-    margin: 0 auto var(--sys-xl, 3.38rem);
+  .s2-video {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto var(--sys-xl, 3.5rem);
+    background: var(--sys-color-on-surface, #222);
+    box-shadow: var(--sys-surface-shadows-md, 0 6px 20px rgba(0,0,0,0.18));
   }
 
-  .s2-logo img {
+  .s2-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
   }
 
   .s2-panel > p {
@@ -288,6 +304,37 @@ const bookJsonLd = {
      Responsive
      ------------------------------------------------------- */
   @media (max-width: 768px) {
+    .hero-panel {
+      max-width: 100%;
+    }
+
+    .hero-panel h1 {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .book-stack {
+      height: 240px;
+      max-width: 260px;
+    }
+
+    .book-stack__cover {
+      height: 210px;
+    }
+
+    .book-stack__bg {
+      height: 180px;
+      left: auto;
+      right: auto;
+    }
+
+    .book-stack__bg--left {
+      left: -20px;
+    }
+
+    .book-stack__bg--right {
+      right: -20px;
+    }
+
     .about-row {
       flex-direction: column;
       text-align: center;
@@ -297,16 +344,18 @@ const bookJsonLd = {
       width: 160px;
     }
 
-    .book-stack {
-      height: 240px;
+    .speaking-panel,
+    .s2-panel {
+      max-width: 100%;
     }
 
-    .book-stack__cover {
-      height: 220px;
+    .video-embed,
+    .s2-video {
+      max-width: 100%;
     }
 
-    .book-stack__bg {
-      height: 190px;
+    .s2-panel > p {
+      font-size: var(--sys-sizes-base, 17px);
     }
   }
 </style>

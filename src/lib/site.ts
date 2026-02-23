@@ -13,7 +13,7 @@ export const SITE = {
   },
   social: {
     linkedin: "https://www.linkedin.com/in/mark-bjornsgaard/",
-    spotify: "https://open.spotify.com/show/placeholder",
+    spotify: "https://open.spotify.com/artist/49sAZLRBJgtum6oW6pjrrT?si=bBx8BLF1QkaAb3tZnOu7qA",
   },
   footer: {
     text: "© 2026 System Two Group",
